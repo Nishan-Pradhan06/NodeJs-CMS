@@ -27,23 +27,28 @@ app.get("/contact", (req, res) => {
     res.render("contact")
 })
 
-
 //FOrm submitted conformation Page
 app.get("/submissionConformation", (req, res) => {
     res.render("submissionConformation")
 })
 
 
+
 //form bata data aairaxa parse gar na vha or handel gar vhaneko ho
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 //create blogs post
 app.post("/createblogs", (req, res) => {
     console.log(req.body)
     res.render("submissionConformation")
 })
+
+//database
+
+require("./model/index")
+
+
 
 //started port at 3000 using 3000 port for project
 app.listen(3000, () => {
