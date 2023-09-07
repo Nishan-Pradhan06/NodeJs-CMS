@@ -1,4 +1,5 @@
 const express = require('express')
+const { blogs } = require('./model/index')
 const app = express()
 
 
@@ -39,13 +40,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //create blogs post
-app.post("/createblogs", (req, res) => {
-    console.log(req.body)
+app.post("/createblogs", async (req, res) => {
+    // console.log(req.body)
+    const title = req.body.title
+    const subTitle = req.body.subtitle
+    const description = req.body.description
+    // console.log(title, subTitle, description)
+
+    // databse ma halna paryo
+    // yas code bata database ma data basxa
+    await blogs.create({
+        title: title,
+        subTitle: subTitle,
+        description: description,
+    })
     res.render("submissionConformation")
 })
 
 //database
-
 require("./model/index")
 
 
