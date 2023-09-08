@@ -1,39 +1,37 @@
 const express = require('express')
-const { blogs, contact, Contact } = require('./model/index')
-const contactModel = require('./model/contactModel')
+const { blogs, contact } = require('./model/index')
+// const contactModel = require('./model/contactModel')
 const app = express()
 
 
 //telling the nodejs to set view engine to ejs
 app.set('view engine', 'ejs')
 
+
+
 // all blogs page
 app.get("/", (req, res) => {
-
     res.render("home")
 })
-
 //about us page
 app.get("/aboutus", (req, res) => {
-
     res.render("aboutus")
 })
-
-//create Blogs
+//create Blogs page
 app.get("/createBlogs", (req, res) => {
     res.render("createBlogs")
 })
-
 //contact us page
 app.get("/contact", (req, res) => {
     res.render("contact")
 })
-
 //FOrm submitted conformation Page
 app.get("/submissionConformation", (req, res) => {
     res.render("submissionConformation")
 })
 
+
+/////////////DATABASE///////////////////////////
 
 
 //form bata data aairaxa parse gar na vha or handel gar vhaneko ho
@@ -58,6 +56,7 @@ app.post("/createblogs", async (req, res) => {
     res.render("submissionConformation")
 })
 
+///contact database
 app.post("/contact", async (req, res) => {
     console.log(req.body)
     // const fullName = req.body.fullName;
@@ -65,7 +64,7 @@ app.post("/contact", async (req, res) => {
     // const descriptionMessage = req.body.descriptionMessage;
     const { fullName, emailAddress, descriptionMessage } = req.body;
 
-
+    //database
     await contact.create({
         fullName: fullName,
         emailAddress: emailAddress,
@@ -73,7 +72,6 @@ app.post("/contact", async (req, res) => {
     })
     res.render("submissionConformation")
 })
-
 
 
 
