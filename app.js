@@ -2,7 +2,8 @@ const express = require('express')
 const { blogs, contact } = require('./model/index')
 // const contactModel = require('./model/contactModel')
 const app = express()
-
+//database
+require("./model/index")
 
 //telling the nodejs to set view engine to ejs
 app.set('view engine', 'ejs')
@@ -10,8 +11,15 @@ app.set('view engine', 'ejs')
 
 
 // all blogs page
-app.get("/", (req, res) => {
-    res.render("home")
+app.get("/", async (req, res) => {
+    //table bata data nikalnu paryo
+
+    //blogs vhanne bata vayajati sabai data dey vhaneko ho
+    const allblogs = await blogs.findAll()
+    console.log(allblogs);
+
+    //blogs vanney key/name ma allblogs/data pass gareko ejs file lai
+    res.render("home", { blogs: allblogs })
 })
 //about us page
 app.get("/aboutus", (req, res) => {
@@ -25,12 +33,14 @@ app.get("/createBlogs", (req, res) => {
 app.get("/contact", (req, res) => {
     res.render("contact")
 })
-//FOrm submitted conformation Page
+//Form submitted conformation Page
 app.get("/submissionConformation", (req, res) => {
     res.render("submissionConformation")
 })
 
-
+app.get("/noblogs",(req,res)=>{
+    res.render("noblogs")
+})
 /////////////DATABASE///////////////////////////
 
 
@@ -57,27 +67,27 @@ app.post("/createblogs", async (req, res) => {
 })
 
 ///contact database
-app.post("/contact", async (req, res) => {
-    console.log(req.body)
-    // const fullName = req.body.fullName;
-    // const emailAddress = req.body.emailAddress;
-    // const descriptionMessage = req.body.descriptionMessage;
-    const { fullName, emailAddress, descriptionMessage } = req.body;
+// app.post("/contact", async (req, res) => {
+//     console.log(req.body)
+//     // const fullName = req.body.fullName;
+//     // const emailAddress = req.body.emailAddress;
+//     // const descriptionMessage = req.body.descriptionMessage;
+//     const { fullName, emailAddress, descriptionMessage } = req.body;
 
-    //database
-    await contact.create({
-        fullName: fullName,
-        emailAddress: emailAddress,
-        descriptionMessage: descriptionMessage,
-    })
-    res.render("submissionConformation")
-})
-
-
+//     //database
+//     await contact.create({
+//         fullName: fullName,
+//         emailAddress: emailAddress,
+//         descriptionMessage: descriptionMessage,
+//     })
+//     res.render("submissionConformation")
+// })
 
 
-//database
-require("./model/index")
+//database/table bata data nikalne way
+
+
+
 
 
 
