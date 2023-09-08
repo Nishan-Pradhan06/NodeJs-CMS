@@ -30,7 +30,7 @@ db.sequelize = sequelize;
 
 // importing model files 
 db.blogs = require("./blogsModel.js")(sequelize, DataTypes);
-
+db.contact = require("./contactModel.js")(sequelize, DataTypes);
 
 db.sequelize.sync({ force: false }).then(() => {
     console.log("yes re-sync done");

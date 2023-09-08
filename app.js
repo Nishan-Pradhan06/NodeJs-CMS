@@ -1,5 +1,6 @@
 const express = require('express')
-const { blogs } = require('./model/index')
+const { blogs, contact, Contact } = require('./model/index')
+const contactModel = require('./model/contactModel')
 const app = express()
 
 
@@ -56,6 +57,26 @@ app.post("/createblogs", async (req, res) => {
     })
     res.render("submissionConformation")
 })
+
+app.post("/contact", async (req, res) => {
+    console.log(req.body)
+    // const fullName = req.body.fullName;
+    // const emailAddress = req.body.emailAddress;
+    // const descriptionMessage = req.body.descriptionMessage;
+    const { fullName, emailAddress, descriptionMessage } = req.body;
+
+
+    await contact.create({
+        fullName: fullName,
+        emailAddress: emailAddress,
+        descriptionMessage: descriptionMessage,
+    })
+    res.render("submissionConformation")
+})
+
+
+
+
 
 //database
 require("./model/index")
