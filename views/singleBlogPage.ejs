@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Single Blog Page</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+        /* Reset some default styles for the page */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Style for the navigation bar */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav a {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+        }
+
+        /* Style for the blog card */
+        .blog-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .blog-card h2 {
+            font-size: 20px;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .blog-card p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+         /* Style for the button */
+         .button {
+            background-color: #f44336;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+    </head>
+    <body>
+        <header>
+            <h1>Content Management System(CMS)</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/aboutus">About</a>
+                <a href="/createBlogs">Add Blogs</a>
+                <a href="#">Services</a>
+                <a href="/contact">Contact</a>
+            </nav>
+        </header>
+
+        <div class="blog-card">
+                <h1><%- blog[0].title  %></h1>
+                <h2><%- blog[0].subTitle %></h2>
+                <p><%- blog[0].description%></p>
+                <p class="publish-date">Publish on <%- blog[0].createdAt.toISOString().slice(0,10)  %></p>
+                <p><a href="/deleteconformation" class=" button">Delete</a></p>
+            </div>
+        </div>
+    </body>
+</html>

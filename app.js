@@ -16,7 +16,7 @@ app.get("/", async (req, res) => {
 
     //blogs vhanne bata vayajati sabai data dey vhaneko ho
     const allblogs = await blogs.findAll()
-    console.log(allblogs);
+    // console.log(allblogs);
 
     //blogs vanney key/name ma allblogs/data pass gareko ejs file lai
     res.render("home", { blogs: allblogs })
@@ -38,9 +38,28 @@ app.get("/submissionConformation", (req, res) => {
     res.render("submissionConformation")
 })
 
-app.get("/noblogs",(req,res)=>{
-    res.render("noblogs")
+app.get("/deleteConformation", (req, res) => {
+    res.render("deleteconformation")
 })
+
+
+//singe BLog page
+app.get("/singleblog/:id", async (req, res) => {
+    // console.log(req.params.title)
+    // console.log(req.params.id)
+    const id = req.params.id
+    const blog = await blogs.findAll(
+        {
+            where: {
+                id: id
+            }
+        })
+    console.log(blog)
+    res.render("singleBlogPage", { blog: blog })
+})
+
+
+
 /////////////DATABASE///////////////////////////
 
 
