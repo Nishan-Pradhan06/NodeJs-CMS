@@ -77,32 +77,36 @@ app.post("/createblogs", async (req, res) => {
         subTitle: subTitle,
         description: description,
     })
-    res.render("submissionConformation")
+    res.redirect("/")
 })
-
-///contact database
-// app.post("/contact", async (req, res) => {
-//     console.log(req.body)
-//     // const fullName = req.body.fullName;
-//     // const emailAddress = req.body.emailAddress;
-//     // const descriptionMessage = req.body.descriptionMessage;
-//     const { fullName, emailAddress, descriptionMessage } = req.body;
-
-//     //database
-//     await contact.create({
-//         fullName: fullName,
-//         emailAddress: emailAddress,
-//         descriptionMessage: descriptionMessage,
-//     })
-//     res.render("submissionConformation")
-// })
-
 
 //database/table bata data nikalne way
 
 
+//delete page
+app.delete("/delete/:id", async (req, res) => {
 
+    // if try inside code throws error then catch catches it and throws an error log  
+    try {
+        const deleteBlogs = await blogs.findOne({
+            where: {
+                id: (req.params.id) * 1,
+            }
+        })
 
+        // deleting the content from the database
+        await deleteBlogs.destroy();
+
+        res.status(200).json({
+            status:"success",
+            message:"deleted",
+        })
+       
+    } catch(err){
+        console.log("blog cannot found with that" + err.message);
+    }
+
+})
 
 
 //started port at 3000 using 3000 port for project

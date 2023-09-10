@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetAlert2 Examples</title>
+    <!-- Include SweetAlert2 CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <h1>SweetAlert2 Examples</h1>
+
+    <button type="button" class="btn btn-success" onclick="showSuccessMessage()">
+        Show Success Message
+    </button>
+
+    <button type="button" class="btn btn-danger" onclick="showErrorMessage()">
+        Show Error Message
+    </button>
+
+    <button type="button" class="btn btn-info" onclick="showInformationMessage()">
+        Show Information Message
+    </button>
+
+    <button type="button" class="btn btn-warning" onclick="showWarningMessage()">
+        Show Warning Message
+    </button>
+
+    <script>
+        function showSuccessMessage() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your operation was successful.',
+            });
+        }
+
+        function showErrorMessage() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
+        }
+
+        function showInformationMessage() {
+            Swal.fire({
+                icon: 'info',
+                title: 'Information',
+                text: 'This is an informational message.',
+            });
+        }
+
+        
+    </script>
+</body>
+</html>

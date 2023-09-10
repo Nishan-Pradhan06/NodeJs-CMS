@@ -112,12 +112,13 @@
                 <h2><%- blog[0].subTitle %></h2>
                 <p><%- blog[0].description%></p>
                 <p class="publish-date">Publish on <%- blog[0].createdAt.toISOString().slice(0,10)  %></p>
-                <button class=" button" onclick="showDeleteConfirmation()">Delete</button>
-               
+
+                <button class=" button" onclick=showDeleteConfirmation(<%- blog[0].id%>)>Delete</button>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
-          function showDeleteConfirmation() {
+          async function showDeleteConfirmation(id) {
             Swal.fire({
                 title: 'Delete Confirmation',
                 text: 'Are you sure you want to delete this Blog?',
@@ -132,10 +133,29 @@
                 preConfirm: () => {
                     // Simulate a delay (you should replace this with your actual delete logic)
                     return new Promise((resolve) => {
-                        setTimeout(() => {
+                        setTimeout( () => {
                             resolve();
+                            
                         }, 2000); // Simulated delay of 2 seconds
-                    }).then(() => {
+                    }).then(async () => {
+                        
+                        const url = `http://localhost:3000/delete/${id}`
+                        
+                        const deleteData = await axios({
+                            method: 'delete',
+                            url,
+                            // url : url
+                            // url
+                        })
+
+                        if(deleteData.data.status === "success"){
+                            setTimeout(() => {
+                                window.location.replace("http://localhost:3000");
+                            }, 2000);
+                        } else{
+                            alert("falied to delete data");
+                        }
+
                         // Show success message when the operation is complete
                         Swal.fire('Deleted!', 'Blog has been deleted.', 'success');
                     }).catch((error) => {
@@ -144,6 +164,9 @@
                     });
                 },
             });
+
+
+            
         }
         </script>
     </body>

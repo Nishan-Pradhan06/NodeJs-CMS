@@ -4,6 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Create Blogs</title>
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.css">
+        <script
+            src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.all.min.js"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
         body {
@@ -95,8 +99,18 @@
                     <textarea id="description" name="description" rows="4"
                         required></textarea>
                 </div>
-                <button type="submit">Publish</button>
+                <button type="submit" onclick="showSuccessMessage()">Publish</button>
             </form>
         </div>
+
+        <script>
+         function showSuccessMessage() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your operation was successful.',
+            });
+        }
+     </script>
     </body>
 </html>
