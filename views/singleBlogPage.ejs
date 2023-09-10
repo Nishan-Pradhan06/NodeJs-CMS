@@ -4,6 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Single Blog Page</title>
+
+   <!-- Include SweetAlert2 CSS and JS -->
+   <link rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.css"><script
+   src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.all.min.js"></script>
+
+
+
+
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
         /* Reset some default styles for the page */
@@ -103,8 +112,39 @@
                 <h2><%- blog[0].subTitle %></h2>
                 <p><%- blog[0].description%></p>
                 <p class="publish-date">Publish on <%- blog[0].createdAt.toISOString().slice(0,10)  %></p>
-                <p><a href="/deleteconformation" class=" button">Delete</a></p>
+                <button class=" button" onclick="showDeleteConfirmation()">Delete</button>
+               
             </div>
         </div>
+        <script>
+          function showDeleteConfirmation() {
+            Swal.fire({
+                title: 'Delete Confirmation',
+                text: 'Are you sure you want to delete this Blog?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm Delete ',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                showLoaderOnConfirm: true, // Show loading spinner during the operation
+                allowOutsideClick: false, // Prevent closing the dialog by clicking outside
+                preConfirm: () => {
+                    // Simulate a delay (you should replace this with your actual delete logic)
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve();
+                        }, 2000); // Simulated delay of 2 seconds
+                    }).then(() => {
+                        // Show success message when the operation is complete
+                        Swal.fire('Deleted!', 'Blog has been deleted.', 'success');
+                    }).catch((error) => {
+                        // Show an error message if the operation fails
+                        Swal.showValidationMessage(`Operation failed: ${error}`);
+                    });
+                },
+            });
+        }
+        </script>
     </body>
 </html>

@@ -38,11 +38,6 @@ app.get("/submissionConformation", (req, res) => {
     res.render("submissionConformation")
 })
 
-app.get("/deleteConformation", (req, res) => {
-    res.render("deleteconformation")
-})
-
-
 //singe BLog page
 app.get("/singleblog/:id", async (req, res) => {
     // console.log(req.params.title)
