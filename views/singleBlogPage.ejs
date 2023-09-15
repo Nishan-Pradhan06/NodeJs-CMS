@@ -112,7 +112,7 @@
                 <h2><%- blog[0].subTitle %></h2>
                 <p><%- blog[0].description%></p>
                 <p class="publish-date">Publish on <%- blog[0].createdAt.toISOString().slice(0,10)  %></p>
-
+                <button class=" button" >Edit</button>
                 <button class=" button" onclick=showDeleteConfirmation(<%- blog[0].id%>)>Delete</button>
             </div>
         </div>
